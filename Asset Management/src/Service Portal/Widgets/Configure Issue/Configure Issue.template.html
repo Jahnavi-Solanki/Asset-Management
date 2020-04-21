@@ -1,0 +1,76 @@
+<div class="panel panel-default" >
+  <div class="panel-heading clearfix" style="background-color:#80B6A1;color:white">
+    <div class="row">
+      <div class="col-md-11">
+        <h2>Report Issue</h2>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" >
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="asset">Asset:</label>
+        <div class="col-sm-10" >
+          <!--<sn-record-picker field="assetObj"  table="'alm_asset'"  default-query="'company=2ccbea97db03001091f67a61399619c0^assigned_toDYNAMIC90d1921e5f510100a9ad2572f2b477fe'" display-field="'display_name'" value-field="'sys_id'" search-fields="'display_name'" page-size="100" ></sn-record-picker>
+-->
+          <select ng-model="c.data.selectedasset">
+            <option ng-repeat="x in data.assets" value="{{x.sys_id}}">{{x.display_name}}</option>
+          </select>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="duedate">Due Date:</label>
+        <div class="col-sm-10">
+          <input type="date"  min="{{data.today}}" ng-model="c.data.duedate"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="duedate">Category:</label>
+        <div class="col-sm-10">
+          <select ng-model="c.data.category" name="category">
+
+            <option value="software">Software</option>
+            <option value="hardware">Hardware</option>
+
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="duedate">Urgency:</label>
+        <div class="col-sm-10">
+          <select ng-model="c.data.urgency" name="urgency">
+            <option value="1">High</option>
+            <option value="2">Medium</option>
+            <option value="3">Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="description">Description:</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" ng-model="c.data.description" ></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+
+        <center>
+          <input class="btn btn-primary btn-sm m-l-xs" type="button" ng-click="c.report()"  value="Submit"/>
+        </center>
+      </div>
+      <div  class="form-group">
+        <center>
+          <label >
+            {{data.message}}
+          </label>
+        </center>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+

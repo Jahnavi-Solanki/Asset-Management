@@ -1,0 +1,57 @@
+<div ng-if="data.canRead" class="panel b">
+   <div class="panel-heading bg-primary panel-la-jolla-default">
+       <span>${{{data.tableLabel}} Record Details}</span>
+  </div>
+
+
+  <div class="panel-body">
+    <dl class="ticket-fields" ng-if="data.fields.length > 0">
+      <dt class= "col-md-6 col-sm-12 col-xs-6 break-word" 
+          ng-if="field.value && (field.type != 'decimal' || field.type == 'decimal' && field.value != 0)" 
+          ng-repeat-start="field in data.fields">{{field.label}}</dt>
+
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word" 
+          ng-repeat-end ng-switch="field.type" 
+          ng-if="field.value && (field.type != 'decimal' || field.type == 'decimal' && field.value != 0)">
+        <div ng-switch-when="glide_date_time" title="{{field.display_value}}">
+          <sn-time-ago timestamp="::field.value" />
+        </div>
+        <div ng-switch-default >{{field.display_value}}</div>
+      </dd>
+
+    </dl>
+    <dl class="ticket-fields" >
+      <dt class= "col-md-6 col-sm-12 col-xs-6 break-word" >
+        Asset:
+      </dt>
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word" >{{data.asset.display_name}}    </dd>
+    </dl>
+
+    <dl class="ticket-fields" ng-if="data.already_assigned==false&&data.role&&data.showassigned_to">
+      <dt class= "col-md-6 col-sm-12 col-xs-6 break-word" >
+        Assign to:
+      </dt>
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word" ><sn-record-picker field="userObj" class="select" table="'sys_user'" default-query="'roles=x_445396_asset_man.IT'" display-field="'user_name'" value-field="'sys_id'" search-fields="'user_name'" page-size="100" ></sn-record-picker>
+      </dd>
+    </dl>
+
+
+    <dl class="ticket-fields" ng-if="data.role&&data.showstate">
+
+			
+      <dt class= "col-md-6 col-sm-12 col-xs-6 break-word" >
+        State:
+      </dt>
+      
+        
+     
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word"  >
+        
+          <select   ng-model="c.data.state" ng-change="c.statechanged()" class="form-control" >
+  <option ng-repeat="x in data.states"  value="{{x.value}}">{{x.name}}</option>
+</select>
+        
+      </dd>
+    </dl>
+  </div>
+</div>

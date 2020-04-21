@@ -1,0 +1,53 @@
+<div  class="panel b">
+   <div class="panel-heading bg-primary panel-la-jolla-default">
+       <span>${{{data.tableLabel}} Record Details}</span>
+  </div>
+
+
+  <div class="panel-body">
+    <dl class="ticket-fields" ng-if="data.fields.length > 0">
+      <dt class= "col-md-6 col-sm-12 col-xs-6 break-word" 
+          ng-if="field.value && (field.type != 'decimal' || field.type == 'decimal' && field.value != 0)" 
+          ng-repeat-start="field in data.fields">{{field.label}}</dt>
+
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word" 
+          ng-repeat-end ng-switch="field.type" 
+          ng-if="field.value && (field.type != 'decimal' || field.type == 'decimal' && field.value != 0)">
+        <div ng-switch-when="glide_date_time" title="{{field.display_value}}">
+          <sn-time-ago timestamp="::field.value" />
+        </div>
+        <div ng-switch-default >{{field.display_value}}</div>
+      </dd>
+
+    </dl>
+    <dl class="ticket-fields" >
+      <dt class= "col-md-6 col-sm-12 col-xs-6 break-word" >
+        Asset:
+      </dt>
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word" >{{data.asset.display_name}}      </dd>
+    </dl>
+
+
+    <dl class="ticket-fields" >
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word"  >
+        <button  ng-if="data.request.request_state != 'Approved' && data.request.request_state != 'Closed Rejected' && data.role=='PMO' " name="approve" role="button" class="btn btn-primary btn-sm m-l-xs" ng-click="c.approveRequest()"  aria-label="${Approve Request}">${Approve}</button>
+      </dd>
+    </dl>
+     
+    <dl class="ticket-fields" >
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word"  >
+        <button ng-if="data.request.request_state != 'Approved' && data.request.request_state != 'Closed Rejected' && data.role=='PMO'" name="reject" role="button" class="btn btn-primary btn-sm m-l-xs" style="background-color:red;" ng-click="c.rejectRequest()"  aria-label="${Reject Request}">${Reject}</button>
+      </dd>
+    </dl>
+    <dl class="ticket-fields" >
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word"  >
+        <button  ng-if="data.request.request_state == 'Approved'  && data.role=='IT' " name="assign" role="button" class="btn btn-primary btn-sm m-l-xs" ng-click="c.assignAsset()"  aria-label="${Assign Asset}">${Assign Asset}</button>
+      </dd>
+    </dl>
+     <dl class="ticket-fields" >
+      <dd class= "col-md-6 col-sm-12 col-xs-6 break-word"  >
+        <button  ng-if="data.request.request_state == 'Approved'  && data.role=='IT' " name="reject" role="button" class="btn btn-primary btn-sm m-l-xs" ng-click="c.rejectRequest()" style="background-color:red;" aria-label="${Reject Request}">${Reject Request}</button>
+      </dd>
+    </dl>
+  </div>
+</div>

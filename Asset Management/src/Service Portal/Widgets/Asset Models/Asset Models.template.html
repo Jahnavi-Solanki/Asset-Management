@@ -1,0 +1,24 @@
+
+  <div>
+    <div ng-if="data.items.length==0" style="font-size:20px; color:red">
+      NO ASSETS AVAILABLE IN THIS CATEGORY
+        
+      </div>
+      	<div class="col-sm-6 col-md-4" ng-repeat="item in data.items " >
+        <div class="panel panel-{{::options.color}} b">
+          <a target="{{::item.asset_tag}}" class="panel-body block" sn-focus="{{::item.highlight}}" role="button" ng-click="c.select(item.sys_id)">
+            <div class="overflow-100">
+              <h2 class="h4 m-t-none m-b-xs text-overflow-ellipsis" title="{{::item.asset_tag}}" style="padding-bottom:1px">{{item.asset_tag}}<span ng-if="item.content_type == 'external'" aria-label="${External Link}"> ➚</span></h2>
+              
+              <div class="text-muted item-short-desc break-word">{{item.display_name}}</div>
+            </div>
+          </a>
+          <div aria-hidden="true" class="panel-footer">
+            <a aria-hidden="true" ng-if="item.sys_class_name != 'sc_cat_item_content' || item.content_type == 'kb' || item.content_type == 'literal'" ng-click="c.assetdetails(item)" ng-href="{{getItemHREF(item)}}" class="pull-left text-muted" tabindex="-1">${View Details}</a>
+            <a aria-hidden="true" ng-if="item.sys_class_name == 'sc_cat_item_content' && item.content_type == 'external'" ng-click="c.assetdetails(item)" ng-href="{{getItemHREF(item)}}" target="_blank" class="pull-left text-muted" tabindex="-1">${View Details}</a>
+           <span ng-if="data.showPrices && item.hasPrice" class="pull-right item-price font-bold">{{::item.price}}</span> &nbsp;
+          </div>
+        </div>
+      </div>
+      </div>
+      

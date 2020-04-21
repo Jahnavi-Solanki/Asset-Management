@@ -1,0 +1,120 @@
+.sp-login-widget { 
+  
+  .panel-body {
+    padding: 15px 15px 10px;
+  }
+  
+  .form-control,
+  label[for="username"],
+  label[for="password"] {
+    color: black;
+  }
+  
+  .btn {
+    font-weight: 600;
+    font-size: 2.0rem;
+    background-color: $login-btn-bg;
+    border-color: $login-btn-border;
+  }
+  
+  .list-group {
+    margin-bottom: 12px;
+  }
+  
+  .login-button-old {
+    margin-top: 7px;
+  }
+  
+  .login-alert {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+}
+//STRY50033370: Forgot Password link in the login widget
+//Start -- login widget advanced view
+.sp-login-widget.advanced {  
+  .panel-title {
+    font-size: 25px;
+  }
+  
+  .panel-default > .panel-heading {
+    background-color: $panel-bg; 
+    border: 0px;    
+  }
+  
+  .panel-body {
+    padding: 0px 0px 10px;
+  }
+
+  [placeholder]::-webkit-input-placeholder { 
+    transition: opacity 0.01s 0.01s ease !important; 
+    opacity: 0 !important; 
+  }
+
+  .form-signin {
+    .list-group-item { 
+      border: 0px;
+    }
+    
+    .login-alert {
+    margin-left: 15px;
+    margin-right: 15px;
+    }
+    
+    .btn {
+      font-weight: 400 !important;
+      border-color: $brand-primary;
+      background-color: $brand-primary;
+      border-radius: 2px;
+    }
+
+    .forgot-pwd-div {
+      padding-right: 15px;
+      padding-left: 15px;
+      .forgot-text {
+        font-size: 16px;	
+        line-height: 20px;
+        padding-top: 8px;
+      }
+      
+      .btn {
+        line-height: 16px;
+        font-size: 14px;
+        margin-top: 0px;
+      }
+      
+    }
+    
+    .submit-btn {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+    
+    .input-advanced {
+      margin-top: 10px;
+      border: 1px solid $panel-default-border !important;
+      border-radius: 3px !important;
+      background-color: $panel-bg !important;
+    }
+    
+    .checkbox {
+      padding-left: 15px !important; 
+    }
+   
+    .label-advanced {
+      position: relative;
+      width: 100%;
+      padding: 0;
+      overflow: visible;
+      border: 0;
+      height: 19px;
+      color: $text-color;
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+  }
+
+}
+//End -- login widget advanced view

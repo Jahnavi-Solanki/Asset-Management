@@ -1,0 +1,80 @@
+
+<div ng-if="!data.is_logged_in" class="sp-login-widget" ng-class="::(c.options.use_advanced == 'true' ? 'advanced' : '')">
+  <form ng-if="!c.externalLoginMode" class="form-signin" ng-submit="c.login(c.username, c.password)" method="post">
+		<div ng-class="::{'panel panel-default': c.options.show_panel}">
+			<div ng-if="::c.options.show_panel" class="panel-heading padder-v">	      
+				<h3 class="panel-title">${Login}</h3>
+			</div>
+			<div ng-class="::{'panel-body': c.options.show_panel}">
+				<div class="list-group list-group-sm">
+					<div class="list-group-item">
+            <label for="username" class="sr-only label-advanced">{{::data.usernameMsg}}</label>
+            <input id="username" name="username" autocapitalize="off" ng-keypress="c.message = ''" ng-click="c.message = ''" class="form-control no-border input-advanced" type="text" placeholder='{{::data.usernameMsg}}' autofocus="true" ng-model="c.username"/>
+					</div>
+					<div class="list-group-item">
+            <label for="password" class="sr-only label-advanced">{{::data.passwordMsg}}</label>
+            <input id="password" name="password" ng-keypress="c.message = ''" ng-click="c.message = ''" class="form-control no-border input-advanced" type="password" placeholder='{{::data.passwordMsg}}' ng-model="c.password"/>
+					</div>
+				</div>
+
+				<div ng-if="c.message" class="alert alert-danger login-alert" role="alert">{{c.message}}</div>
+				<div ng-if="c.success" class="alert alert-success login-alert" role="alert">{{c.success}}</div>
+
+				<div ng-if="::!c.data.forgetMe" class="checkbox">
+          <label>
+            <input name="c.remember_me" ng-model="c.remember_me" checked="checked" id="remember_me" type="checkbox" class="checkbox" value="true"/> ${Remember me}
+					</label>
+				</div>
+        <!--STRY50033370: Forgot Password link in the login widget-->
+        <div class="forgot-pwd-div m-b">
+          <div class="row">
+            <div ng-if="::(c.data.forgotPwdLinkProp == 'true')" class="forgot-text" ng-class="::(c.options.use_advanced == 'true' ? 'col-xs-8' : 'col-xs-12')">
+              <a class="forgot-pwd-link" ng-href="{{::c.data.pswdResetUrl}}" aria-label="${Please click here to reset your password}">${Forgot Password ?}</a>
+            </div>
+            <div ng-class="::(c.options.use_advanced == 'true' && c.data.forgotPwdLinkProp =='true' ? 'col-xs-4' : 'col-xs-12')">
+              <button name="login" type="submit" class="btn btn-lg btn-primary btn-block login-button-old">
+                ${Login}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row set-login-type-link m-t" ng-if="::data.multisso_enabled">
+          <div class="col-xs-12 text-center">
+            <a href="javascript:void(0)"
+               ng-click="c.setExternalLogin(true)">${Use external login}</a>
+          </div>
+        </div>
+			</div>
+		</div>
+	</form>
+	<form ng-if="c.externalLoginMode" class="form-signin" ng-submit="c.externalLogin()" method="post">
+		<div ng-class="::{'panel panel-default': c.options.show_panel}">
+			<div ng-if="::c.options.show_panel" class="panel-heading">
+				<h3 class="panel-title">${External Login}</h3>
+			</div>
+
+			<div ng-class="::{'panel-body': c.options.show_panel}">
+				<div class="list-group list-group-sm">
+					<div class="list-group-item">
+            <label for="username" class="sr-only label-advanced">${User ID}</label>
+            <input id="username" name="username" ng-click="message = ''" class="form-control no-border input-advanced" type="text" placeholder='${User ID}' autofocus="true" ng-model="c.username"/>
+					</div>
+				</div>
+
+        <div class="submit-btn row">
+          <div class="col-xs-12">
+            <button name="login" type="submit" class="btn btn-lg btn-primary btn-block" >
+              ${Submit}
+            </button>
+          </div>
+        </div>
+        <div class="set-login-type-link row m-t">
+          <div class="col-xs-12 text-center">
+            <a href="javascript:void(0)"
+               ng-click="c.setExternalLogin(false)">${Use internal login}</a>    
+          </div>
+        </div>
+      </div>
+		</div>
+	</form>
+</div>
